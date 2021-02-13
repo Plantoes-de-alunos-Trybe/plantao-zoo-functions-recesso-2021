@@ -93,8 +93,16 @@ function schedule(dayName) {
   return result;
 }
 
+function employeeById(id) {
+  return employees.find(employee => employee.id === id);
+}
+
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const employee = employeeById(id);
+  const firstSpecies = animalsByIds(employee.responsibleFor[0]);
+  const residents = firstSpecies[0].residents;
+  const older = residents.reduce((acc, cur) => acc.age > cur.age ? acc : cur);
+  return Object.values(older);
 }
 
 function increasePrices(percentage) {
