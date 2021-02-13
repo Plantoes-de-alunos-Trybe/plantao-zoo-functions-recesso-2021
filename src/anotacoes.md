@@ -214,3 +214,12 @@ function animalMap(options = {}) {
 // Muitos detalhes, por questões práticas não serão documentados aqui, serão explicados durante o plantão.
 
 ```
+
+## 9 - schedule
+
+```javascript
+
+// Desestrutura hours from data
+const { animals, employees, prices, hours } = require('./data');
+
+```
