@@ -40,7 +40,12 @@ function addEmployee(id = 'id', firstName = 'firstName', lastName = 'lastName', 
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const result = animals.reduce((acc, { name, residents }) => {
+    acc[name] = residents.length;
+    return acc;
+  }, {});
+  if (species === undefined) return result;
+  return result[species];
 }
 
 function entryCalculator(entrants) {

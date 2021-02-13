@@ -73,9 +73,7 @@ return employees.find(({ firstName, lastName }) => (
 
 ```
 
-
 ## 4 - createEmployee
-
 
 ```javascript
 
@@ -104,9 +102,7 @@ return { ...personalInfo, ...associatedWith };
 
 ```
 
-
 ##  5 - isManager
-
 
 ```javascript
 
@@ -119,7 +115,6 @@ return employees.some(({ managers }) => managers.includes(id));
 ```
 
 ## 6 - addEmployee
-
 
 ```javascript
 
@@ -138,5 +133,21 @@ function addEmployee(id = 'id', firstName = 'firstName', lastName = 'lastName', 
 // Reutilizando a função createEmployee implementada anteriormente
 const newEmployee = createEmployee({ id, firstName, lastName }, { managers, responsibleFor });
 employees.push(newEmployee);
+
+```
+
+## 7 - animalCount
+
+```javascript
+
+// Resolve o primeiro requisito
+const result = animals.reduce((acc, { name, residents }) => {
+  acc[name] = residents.length;
+  return acc;
+}, {});
+if (species === undefined) return result;
+
+// Resolve o segundo requisito adicinando a seguinte linha depois do if
+return result[species];
 
 ```
