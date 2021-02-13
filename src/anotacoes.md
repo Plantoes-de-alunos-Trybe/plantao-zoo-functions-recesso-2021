@@ -215,11 +215,15 @@ function animalMap(options = {}) {
 
 ```
 
-## 9 - schedule
+## 10 - schedule
 
 ```javascript
 
 // Desestrutura hours from data
 const { animals, employees, prices, hours } = require('./data');
+
+// Explicar operador de módulo
+// Explicar ternário
+// Comentar sobre problemas de am/pm
 
 ```
