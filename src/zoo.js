@@ -27,15 +27,16 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(({ managers }) => managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id = 'id', firstName = 'firstName', lastName = 'lastName', managers = [], responsibleFor = []) {
+  const newEmployee = createEmployee({ id, firstName, lastName }, { managers, responsibleFor });
+  employees.push(newEmployee);
 }
 
 function animalCount(species) {

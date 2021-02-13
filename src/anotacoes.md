@@ -72,3 +72,71 @@ return employees.find(({ firstName, lastName }) => (
 )) || {};
 
 ```
+
+
+## 4 - createEmployee
+
+
+```javascript
+
+// Solução mais explicita
+return {
+  id: personalInfo.id,
+  firstName: personalInfo.firstName,
+  lastName: personalInfo.lastName,
+  managers: associatedWith.managers,
+  responsibleFor: associatedWith.responsibleFor,
+}
+
+// Solução com desestruturação e shorthand object
+function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
+  return {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  }
+}
+
+// Solução usando spread
+return { ...personalInfo, ...associatedWith };
+
+```
+
+
+##  5 - isManager
+
+
+```javascript
+
+// Solução sem desestruturação
+return employees.some(employee => employee.managers.includes(id));
+
+// Solução com desestruturação
+return employees.some(({ managers }) => managers.includes(id));
+
+```
+
+## 6 - addEmployee
+
+
+```javascript
+
+// Comentar sobre o uso de default params (id, firstname e lastname não são necessários)
+function addEmployee(id = 'id', firstName = 'firstName', lastName = 'lastName', managers = [], responsibleFor = []) {
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  employees.push(newEmployee);
+}
+
+// Reutilizando a função createEmployee implementada anteriormente
+const newEmployee = createEmployee({ id, firstName, lastName }, { managers, responsibleFor });
+employees.push(newEmployee);
+
+```
