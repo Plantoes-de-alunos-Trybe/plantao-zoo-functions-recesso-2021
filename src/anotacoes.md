@@ -151,3 +151,66 @@ if (species === undefined) return result;
 return result[species];
 
 ```
+
+## 8 - entryCalculator
+
+```javascript
+// As chaves de prices e entrants são iguais, então conseguimos pegar a chave dos entrants
+// e utilizá-las para pegar os preços e acumular o resultado usando o reduce
+return Object.keys(entrants).reduce((acc, cur) => acc + entrants[cur] * prices[cur], 0);
+```
+
+## 9 - animalMap
+
+```javascript
+
+// Primeira parte
+
+// Sem destructuring
+return animals.reduce((acc, animal) => {
+    if (!acc[animal.location]) acc[animal.location] = [];
+    acc[animal.location].push(animal.name);
+    return acc;
+  }, {})
+
+// Com destructuring
+return animals.reduce((acc, { location, name }) => {
+  if (!acc[location]) acc[location] = [];
+  acc[location].push(name);
+  return acc;
+}, {})
+
+
+// Segunda parte
+
+function getAnimalByName(animalName) {
+  return animals.find(({ name }) => name === animalName);
+}
+
+function getAnimalResidentsName(animalName) {
+  const residents = getAnimalByName(animalName)?.residents || [];
+  return { [animalName]: residents.map(resident => resident.name) };
+}
+
+function animalMap(options = {}) {
+  const { includeNames = false } = options;
+  
+  let result = animals.reduce((acc, animal) => {
+    if (!acc[animal.location]) acc[animal.location] = [];
+    acc[animal.location].push(animal.name);
+    return acc;
+  }, {});
+
+  if (includeNames) {
+    result = Object.entries(result).reduce((acc, [key, animalNames]) => {
+      acc[key] = animalNames.map(animal => getAnimalResidentsName(animal));
+      return acc;
+    }, {})
+  }
+  
+  return result;
+}
+
+// Muitos detalhes, por questões práticas não serão documentados aqui, serão explicados durante o plantão.
+
+```
